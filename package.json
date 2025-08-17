@@ -1,0 +1,32 @@
+{
+  "name": "knowledge-marketplace",
+  "version": "1.0.0",
+  "description": "A marketplace for knowledge sharing, allowing users to ask questions, provide answers, and manage transactions.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node apps/api/src/server.js",
+    "test": "jest",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon apps/api/src/server.js",
+    "client": "npm start --prefix apps/web"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.9",
+    "jsonwebtoken": "^8.5.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "socket.io": "^3.0.3",
+    "nodemailer": "^6.4.11",
+    "redis": "^3.1.2",
+    "concurrently": "^5.3.0"
+  },
+  "devDependencies": {
+    "jest": "^26.6.0",
+    "supertest": "^6.1.0",
+    "nodemon": "^2.0.4"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
