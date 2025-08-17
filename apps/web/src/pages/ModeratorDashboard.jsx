@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useStore } from '../store/authStore';
+import  useStore  from '../store/authStore';
 import ModQueue from '../components/moderation/ModQueue';
 import Layout from '../components/common/Layout';
 

@@ -29,7 +29,7 @@ export const deleteQuestion = async (questionId) => {
     }
 };
 
-export const fetchQuestionById = async (questionId) => {
+export const getQuestionById = async (questionId) => {
     try {
         const response = await axios.get(`${API_URL}/questions/${questionId}`);
         return response.data;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useBids } from '../../hooks/useBids';
+import useBids  from '../../hooks/useBids';
 import BidCard from './BidCard';
 
 const BidList = () => {

@@ -3,7 +3,7 @@ import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import QuestionList from '../components/questions/QuestionList';
 import LoadingSpinner from '../components/common/LoadingSpinner';
-import { useQuestions } from '../hooks/useQuestions';
+import useQuestions  from '../hooks/useQuestions';
 
 const HomePage = () => {
     const { questions, loading } = useQuestions();

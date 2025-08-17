@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useWallet } from '../../hooks/useWallet';
-import { useStore } from '../../store/walletStore';
+import  useWallet  from '../../hooks/useWallet';
+import useStore from '../../store/walletStore';
 
 const TopUpForm = () => {
     const [amount, setAmount] = useState('');

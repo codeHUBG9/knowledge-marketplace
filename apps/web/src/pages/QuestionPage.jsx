@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getQuestionById } from '../services/questions';
+import  {getQuestionById}  from '../services/questions';
 import QuestionDetail from '../components/questions/QuestionDetail';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 

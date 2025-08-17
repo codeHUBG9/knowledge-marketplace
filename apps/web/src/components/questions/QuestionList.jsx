@@ -1,5 +1,5 @@
 import React from 'react';
-import { useQuestions } from '../../hooks/useQuestions';
+import useQuestions from '../../hooks/useQuestions';
 import QuestionCard from './QuestionCard';
 import LoadingSpinner from '../common/LoadingSpinner';
 

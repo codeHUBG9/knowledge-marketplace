@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useQuestions } from '../../hooks/useQuestions';
+import useQuestions from '../../hooks/useQuestions';
 import LoadingSpinner from '../common/LoadingSpinner';
 import AnswerList from '../answers/AnswerList';
 import BidList from '../bids/BidList';

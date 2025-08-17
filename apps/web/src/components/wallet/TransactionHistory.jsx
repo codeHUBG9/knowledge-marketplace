@@ -1,6 +1,6 @@
 import React from 'react';
-import { useWallet } from '../../../hooks/useWallet';
-import { formatCurrency } from '../../../utils/formatters';
+import  useWallet  from '../../hooks/useWallet';
+import { formatCurrency } from '../../utils/formatters';
 
 const TransactionHistory = () => {
     const { transactions } = useWallet();

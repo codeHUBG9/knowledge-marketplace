@@ -1,8 +1,8 @@
 import React from 'react';
-import { useAuth } from '../hooks/useAuth';
-import { useWallet } from '../hooks/useWallet';
-import { WalletWidget } from '../components/wallet/WalletWidget';
-import { LoadingSpinner } from '../components/common/LoadingSpinner';
+import  useAuth  from '../hooks/useAuth';
+import  useWallet  from '../hooks/useWallet';
+import  WalletWidget  from '../components/wallet/WalletWidget';
+import  LoadingSpinner  from '../components/common/LoadingSpinner';
 
 const ProfilePage = () => {
     const { user, loading } = useAuth();

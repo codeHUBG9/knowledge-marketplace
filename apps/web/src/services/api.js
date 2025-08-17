@@ -32,7 +32,7 @@ apiClient.interceptors.response.use(
     }
 );
 
-// Example API service functions
+// Questions API
 export const fetchQuestions = async () => {
     return await apiClient.get('/questions');
 };
@@ -45,6 +45,13 @@ export const createQuestion = async (questionData) => {
     return await apiClient.post('/questions', questionData);
 };
 
-// Add more API service functions as needed
+// Moderation API
+export const fetchModerationQueue = async () => {
+    return await apiClient.get('/moderation/queue');
+};
+
+export const resolveFlag = async (flagId, resolution) => {
+    return await apiClient.post(`/moderation/flags/${flagId}/resolve`, resolution);
+};
 
 export default apiClient;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { registerUser } from '../services/auth';
+import {register} from '../services/auth';
 import RegisterForm from '../components/auth/RegisterForm';
 
 const RegisterPage = () => {
@@ -9,7 +9,7 @@ const RegisterPage = () => {
 
     const handleRegister = async (userData) => {
         try {
-            await registerUser(userData);
+            await register(userData);
             navigate('/login');
         } catch (err) {
             setError(err.response?.data?.message || 'Registration failed');

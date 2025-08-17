@@ -1,7 +1,7 @@
 import React from 'react';
-import { useQuestions } from '../hooks/useQuestions';
-import { QuestionList } from '../components/questions/QuestionList';
-import { LoadingSpinner } from '../components/common/LoadingSpinner';
+import  useQuestions  from '../hooks/useQuestions';
+import  QuestionList  from '../components/questions/QuestionList';
+import  LoadingSpinner from '../components/common/LoadingSpinner';
 
 const AskerDashboard = () => {
     const { questions, isLoading, error } = useQuestions();

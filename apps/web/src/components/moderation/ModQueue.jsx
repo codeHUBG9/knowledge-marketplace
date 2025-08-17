@@ -9,8 +9,8 @@ const ModQueue = () => {
     useEffect(() => {
         const getFlags = async () => {
             try {
-                const response = await fetchModerationQueue();
-                setFlags(response.data);
+                const data = await fetchModerationQueue();
+                setFlags(data);
             } catch (error) {
                 console.error('Error fetching moderation queue:', error);
             } finally {

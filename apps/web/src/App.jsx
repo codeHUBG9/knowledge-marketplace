@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import HomePage from './pages/HomePage';
@@ -19,17 +19,19 @@ const App = () => {
         <Router>
             <Layout>
                 <Header />
-                <Switch>
-                    <Route path="/" exact component={HomePage} />
-                    <Route path="/login" component={LoginPage} />
-                    <Route path="/register" component={RegisterPage} />
-                    <ProtectedRoute path="/questions/:id" component={QuestionPage} />
-                    <ProtectedRoute path="/expert-dashboard" component={ExpertDashboard} />
-                    <ProtectedRoute path="/asker-dashboard" component={AskerDashboard} />
-                    <ProtectedRoute path="/wallet" component={WalletPage} />
-                    <ProtectedRoute path="/profile" component={ProfilePage} />
-                    <ProtectedRoute path="/moderator-dashboard" component={ModeratorDashboard} />
-                </Switch>
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<RegisterPage />} />
+                    <Route element={<ProtectedRoute />}>
+                        <Route path="/questions/:id" element={<QuestionPage />} />
+                        <Route path="/expert-dashboard" element={<ExpertDashboard />} />
+                        <Route path="/asker-dashboard" element={<AskerDashboard />} />
+                        <Route path="/wallet" element={<WalletPage />} />
+                        <Route path="/profile" element={<ProfilePage />} />
+                        <Route path="/moderator-dashboard" element={<ModeratorDashboard />} />
+                    </Route>
+                </Routes>
                 <Footer />
             </Layout>
         </Router>

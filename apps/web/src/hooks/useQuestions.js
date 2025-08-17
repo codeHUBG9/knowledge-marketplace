@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useStore } from '../store/questionStore';
+import  useStore  from '../store/questionStore';
 import { fetchQuestions } from '../services/questions';
 
 const useQuestions = () => {

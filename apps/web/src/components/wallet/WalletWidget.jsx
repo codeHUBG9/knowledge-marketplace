@@ -1,7 +1,6 @@
 import React from 'react';
-import { useWallet } from '../../hooks/useWallet';
+import  useWallet from '../../hooks/useWallet';
 import { formatCurrency } from '../../utils/formatters';
-
 const WalletWidget = () => {
     const { balance, transactions } = useWallet();
 

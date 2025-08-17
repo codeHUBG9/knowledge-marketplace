@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useStore } from '../store/authStore';
+import useAuthStore from '../store/authStore';
 import { login as loginService, register as registerService } from '../services/auth';
 
 const useAuth = () => {
-    const { user, setUser, setToken } = useStore();
+    const user = useAuthStore((state) => state.user);
+    const setUser = useAuthStore((state) => state.setUser);
+    const loginStore = useAuthStore((state) => state.login);
+    const logoutStore = useAuthStore((state) => state.logout);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -11,9 +14,8 @@ const useAuth = () => {
         setLoading(true);
         setError(null);
         try {
-            const { user, token } = await loginService(credentials);
-            setUser(user);
-            setToken(token);
+            const { user } = await loginService(credentials);
+            loginStore(user);
         } catch (err) {
             setError(err.message);
         } finally {
@@ -25,9 +27,8 @@ const useAuth = () => {
         setLoading(true);
         setError(null);
         try {
-            const { user, token } = await registerService(userData);
-            setUser(user);
-            setToken(token);
+            const { user } = await registerService(userData);
+            loginStore(user);
         } catch (err) {
             setError(err.message);
         } finally {
@@ -36,8 +37,7 @@ const useAuth = () => {
     };
 
     const logout = () => {
-        setUser(null);
-        setToken(null);
+        logoutStore();
     };
 
     useEffect(() => {

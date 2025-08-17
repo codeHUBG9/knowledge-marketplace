@@ -1,5 +1,5 @@
 import React from 'react';
-import { useWallet } from '../hooks/useWallet';
+import  useWallet from '../hooks/useWallet';
 import WalletWidget from '../components/wallet/WalletWidget';
 import TransactionHistory from '../components/wallet/TransactionHistory';
 import TopUpForm from '../components/wallet/TopUpForm';

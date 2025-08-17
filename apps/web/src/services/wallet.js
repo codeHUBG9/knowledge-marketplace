@@ -1,6 +1,15 @@
 import api from './api';
 
 const walletService = {
+    fetchWalletData: async () => {
+        try {
+            const response = await api.get('/wallet/data');
+            return response.data;
+        } catch (error) {
+            throw new Error('Error fetching wallet data');
+        }
+    },
+
     getBalance: async (userId) => {
         try {
             const response = await api.get(`/wallet/balance/${userId}`);
