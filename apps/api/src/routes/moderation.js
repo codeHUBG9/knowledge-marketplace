@@ -1,12 +1,12 @@
 const express = require('express');
 const { flagContent, getFlags, resolveFlag } = require('../services/moderationService');
-const { authenticate } = require('../middleware/auth');
-const { validateFlag } = require('../middleware/validation');
+const auth = require('../middleware/auth');
+const { validate } = require('../middleware/validation');
 
 const router = express.Router();
 
 // Route to flag content
-router.post('/flag', authenticate, validateFlag, async (req, res) => {
+router.post('/flag', auth, validate, async (req, res) => {
     try {
         const flag = await flagContent(req.body);
         res.status(201).json(flag);
@@ -16,7 +16,7 @@ router.post('/flag', authenticate, validateFlag, async (req, res) => {
 });
 
 // Route to get all flags
-router.get('/flags', authenticate, async (req, res) => {
+router.get('/flags', auth, async (req, res) => {
     try {
         const flags = await getFlags();
         res.status(200).json(flags);
@@ -26,7 +26,7 @@ router.get('/flags', authenticate, async (req, res) => {
 });
 
 // Route to resolve a flag
-router.patch('/flags/:id/resolve', authenticate, async (req, res) => {
+router.patch('/flags/:id/resolve', auth, async (req, res) => {
     try {
         const resolvedFlag = await resolveFlag(req.params.id);
         res.status(200).json(resolvedFlag);

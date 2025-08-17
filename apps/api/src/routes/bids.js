@@ -1,12 +1,12 @@
 const express = require('express');
 const { createBid, getBidsByQuestionId } = require('../services/bidService');
-const { validateBid } = require('../middleware/validation');
-const { authenticate } = require('../middleware/auth');
+const { validateBidCreation, validate } = require('../middleware/validation');
+const auth = require('../middleware/auth');
 
 const router = express.Router();
 
 // Create a new bid
-router.post('/', authenticate, validateBid, async (req, res) => {
+router.post('/', auth, [validateBidCreation, validate], async (req, res) => {
     try {
         const bid = await createBid(req.body, req.user.id);
         res.status(201).json(bid);

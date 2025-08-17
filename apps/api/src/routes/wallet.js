@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const walletService = require('../services/walletService');
-const { authenticate } = require('../middleware/auth');
+const auth = require('../middleware/auth');
 
 // Get wallet balance
-router.get('/balance', authenticate, async (req, res) => {
+router.get('/balance', auth, async (req, res) => {
     try {
         const balance = await walletService.getBalance(req.user.id);
         res.json({ balance });
@@ -14,7 +14,7 @@ router.get('/balance', authenticate, async (req, res) => {
 });
 
 // Top up wallet
-router.post('/topup', authenticate, async (req, res) => {
+router.post('/topup', auth, async (req, res) => {
     const { amount } = req.body;
     try {
         const transaction = await walletService.topUp(req.user.id, amount);
@@ -25,7 +25,7 @@ router.post('/topup', authenticate, async (req, res) => {
 });
 
 // Get transaction history
-router.get('/transactions', authenticate, async (req, res) => {
+router.get('/transactions', auth, async (req, res) => {
     try {
         const transactions = await walletService.getTransactionHistory(req.user.id);
         res.json(transactions);

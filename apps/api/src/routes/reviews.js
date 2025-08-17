@@ -1,12 +1,12 @@
 const express = require('express');
 const { createReview, getReviews } = require('../services/reviewService');
-const { validateReview } = require('../middleware/validation');
-const { authenticate } = require('../middleware/auth');
+const { validateReviewCreation, validate } = require('../middleware/validation');
+const auth = require('../middleware/auth');
 
 const router = express.Router();
 
 // Create a new review
-router.post('/', authenticate, validateReview, async (req, res) => {
+router.post('/', auth, [validateReviewCreation, validate], async (req, res) => {
     try {
         const review = await createReview(req.body, req.user.id);
         res.status(201).json(review);

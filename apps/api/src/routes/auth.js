@@ -1,13 +1,22 @@
 const express = require('express');
-const { register, login } = require('../controllers/authController');
-const { validateRegistration, validateLogin } = require('../middleware/validation');
+const { body } = require('express-validator');
+const { register, login, getCurrentUser, updateProfile, changePassword } = require('../controllers/authController');
+const { validateUserRegistration, validate } = require('../middleware/validation');
+const auth = require('../middleware/auth');
 
 const router = express.Router();
 
-// Registration route
-router.post('/register', validateRegistration, register);
+// Public routes
+router.post('/register', validateUserRegistration, validate, register);
+router.post('/login', [
+    body('email').isEmail().withMessage('Please enter a valid email'),
+    body('password').exists().withMessage('Password is required'),
+    validate
+], login);
 
-// Login route
-router.post('/login', validateLogin, login);
+// Protected routes
+router.get('/me', auth, getCurrentUser);
+router.put('/profile', auth, updateProfile);
+router.put('/change-password', auth, changePassword);
 
 module.exports = router;

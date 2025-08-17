@@ -4,7 +4,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
-const { errorHandler } = require('./middleware/errorHandler');
+const errorHandler = require('./middleware/errorHandler');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const questionRoutes = require('./routes/questions');
@@ -13,7 +13,7 @@ const answerRoutes = require('./routes/answers');
 const walletRoutes = require('./routes/wallet');
 const reviewRoutes = require('./routes/reviews');
 const moderationRoutes = require('./routes/moderation');
-require('dotenv').config();
+require('dotenv').config({ debug: false });
 
 const app = express();
 
@@ -45,11 +45,8 @@ app.use('/api/moderation', moderationRoutes);
 app.use(errorHandler);
 
 // Database Connection
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-.then(() => console.log('MongoDB connected'))
-.catch(err => console.error('MongoDB connection error:', err));
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.error('MongoDB connection error:', err));
 
 module.exports = app;

@@ -5,7 +5,7 @@ const authMiddleware = require('../middleware/auth');
 const validationMiddleware = require('../middleware/validation');
 
 // Create a new question
-router.post('/', authMiddleware, validationMiddleware.validateQuestion, async (req, res) => {
+router.post('/', authMiddleware, [validationMiddleware.validateQuestionCreation, validationMiddleware.validate], async (req, res) => {
     try {
         const question = new Question({
             title: req.body.title,
