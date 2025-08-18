@@ -45,8 +45,24 @@ app.use('/api/moderation', moderationRoutes);
 app.use(errorHandler);
 
 // Database Connection
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error('MongoDB connection error:', err));
+const connectDB = async () => {
+    try {
+        const mongoURI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/knowledge_marketplace';
+        console.log('Attempting to connect to MongoDB at:', mongoURI);
+        
+        await mongoose.connect(mongoURI, {
+            serverSelectionTimeoutMS: 5000,
+            socketTimeoutMS: 45000,
+        });
+        
+        console.log('MongoDB connected successfully');
+    } catch (err) {
+        console.error('MongoDB connection error:', err);
+        // Don't exit the process, let the API run even if DB is not available initially
+        // It will keep trying to reconnect
+    }
+};
+
+connectDB();
 
 module.exports = app;
