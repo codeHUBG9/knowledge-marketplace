@@ -1,20 +1,12 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import  useAuth  from '../hooks/useAuth';
 import LoginForm from '../components/auth/LoginForm';
 
 const LoginPage = () => {
-    const { login } = useAuth();
-    const { register, handleSubmit, formState: { errors } } = useForm();
-
-    const onSubmit = async (data) => {
-        await login(data);
-    };
-
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen">
-            <h1 className="text-2xl font-bold mb-4">Login</h1>
-            <LoginForm onSubmit={handleSubmit(onSubmit)} register={register} errors={errors} />
+        <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-md w-full space-y-8">
+                <LoginForm />
+            </div>
         </div>
     );
 };

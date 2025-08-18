@@ -1,26 +1,12 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {register} from '../services/auth';
+import React from 'react';
 import RegisterForm from '../components/auth/RegisterForm';
 
 const RegisterPage = () => {
-    const [error, setError] = useState(null);
-    const navigate = useNavigate();
-
-    const handleRegister = async (userData) => {
-        try {
-            await register(userData);
-            navigate('/login');
-        } catch (err) {
-            setError(err.response?.data?.message || 'Registration failed');
-        }
-    };
-
     return (
-        <div className="register-page">
-            <h1>Register</h1>
-            {error && <p className="error">{error}</p>}
-            <RegisterForm onRegister={handleRegister} />
+        <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-md w-full space-y-8">
+                <RegisterForm />
+            </div>
         </div>
     );
 };

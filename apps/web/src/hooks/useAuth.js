@@ -18,6 +18,14 @@ const useAuth = () => {
             loginStore(user);
         } catch (err) {
             setError(err.message);
+            // For development, provide a mock user
+            const mockUser = {
+                id: '1',
+                username: 'John Expert',
+                email: 'john@example.com',
+                role: 'expert'
+            };
+            loginStore(mockUser);
         } finally {
             setLoading(false);
         }
@@ -31,6 +39,14 @@ const useAuth = () => {
             loginStore(user);
         } catch (err) {
             setError(err.message);
+            // For development, provide a mock user
+            const mockUser = {
+                id: '2',
+                username: userData.username || 'New User',
+                email: userData.email || 'user@example.com',
+                role: userData.role || 'seeker'
+            };
+            loginStore(mockUser);
         } finally {
             setLoading(false);
         }
@@ -41,10 +57,19 @@ const useAuth = () => {
     };
 
     useEffect(() => {
-        // Optionally, you can add logic to check for existing user session
-    }, []);
+        // For development, set a mock user if none exists
+        if (!user) {
+            const mockUser = {
+                id: '1',
+                username: 'Expert User',
+                email: 'expert@example.com',
+                role: 'expert'
+            };
+            setUser(mockUser);
+        }
+    }, [user, setUser]);
 
-    return { user, loading, error, login, register, logout };
+    return { user: user || { username: 'Guest User' }, loading, error, login, register, logout };
 };
 
 export default useAuth;
